@@ -1,4 +1,3 @@
-// Display the default plot
 function init() {
     d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json").then(function (data) {
       console.log(data);
@@ -11,6 +10,14 @@ function init() {
     var otu_ids = data.samples.map(x=> x.otu_ids);
     var otu_label = data.samples.map(x=> x.otu_labels);
     
+  var sorted_test = sample_values.sort(function(a, b){return b-a});
+  var top_ten = sorted_test.map(x => x.slice(0,10));
+  var sorted_ids = otu_ids.sort(function(a, b){return b-a});
+  var top_ids = sorted_ids.map(x =>x.slice(0,10));
+  var sorted_labels = otu_label.sort(function(a, b){return b-a});
+  var top_labels = sorted_labels.map(x =>x.slice(0,10));
+
+        
     // Create Bar Chart
     var trace1 = {
         x : top_ten[0],
